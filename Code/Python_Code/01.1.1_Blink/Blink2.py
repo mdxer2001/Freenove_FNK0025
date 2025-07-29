@@ -1,3 +1,7 @@
+import sys
+import os
+import platform
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 #!/usr/bin/env python3
 ########################################################################
 # Filename    : Blink.py
@@ -5,7 +9,11 @@
 # auther      : www.freenove.com
 # modification: 2019/12/26
 ########################################################################
-from gpiozero import LED
+#from gpiozero import LED
+if platform.system() != "Linux":
+    from RPi_GPIOZERO_mock import LED
+else:
+    from gpiozero import LED
 from time import sleep
 
 print ('Program is starting ... ')

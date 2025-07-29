@@ -1,12 +1,13 @@
 import sys
 import os
+import platform
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-try:
-    import RPi.GPIO as GPIO
-#except ImportError:
-#    import RPi_GPIO_mock as GPIO
-except ImportError:
-    from RPi_GPIO_mock import GPIO
+
+if platform.system() != "Linux":
+    try:
+        import RPi.GPIO as GPIO
+    except:
+        from RPi_GPIO_mock import GPIO
 #!/usr/bin/env python3
 ########################################################################
 # Filename    : Blink.py
